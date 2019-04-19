@@ -1,2 +1,3 @@
-# easy-bug
+# Easy Bug
+
 Bug Catcher
