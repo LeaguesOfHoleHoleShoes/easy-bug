@@ -40,6 +40,12 @@ func (m *ProjectManager) Create(p model.Project) (result model.Project, err erro
 	return p, m.db.Create(p)
 }
 
+// todo
+func (m *ProjectManager) GetProjects() {
+	panic("implement me")
+}
+
+// 外边要检查用户的 token ?
 func (m *ProjectManager) GetProByToken(token string) model.Project {
 	if p, ok := m.projectCache.Get(token); ok {
 		return p.(model.Project)

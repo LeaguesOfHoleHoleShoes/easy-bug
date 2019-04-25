@@ -24,16 +24,20 @@ type UserManager struct {
 }
 
 // 暂不支持单点登录
-func (m *UserManager) Login(username, password string) (token string, err error) {
+func (m *UserManager) Login(username, password string) (result model.User, err error) {
 	u := m.db.GetUserByUsername(username)
 	if u.ID == "" {
-		return "", g_error.ErrUsernameOrPasswordNotRight
+		return model.User{}, g_error.ErrUsernameOrPasswordNotRight
 	}
 	if !u.ValidPassword(password) {
-		return "", g_error.ErrUsernameOrPasswordNotRight
+		return model.User{}, g_error.ErrUsernameOrPasswordNotRight
 	}
 
-	return util.GenUserJwtToken(u.ID, UserTokenExpireDuration)
+	if u.Token, err = util.GenUserJwtToken(u.ID, UserTokenExpireDuration); err != nil {
+		return model.User{}, err
+	}
+
+	return u, nil
 }
 
 func (m *UserManager) Create(u model.User) error {
