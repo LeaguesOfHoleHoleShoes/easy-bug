@@ -10,9 +10,16 @@ const (
 	NotifyError NotifyType = "error"
 )
 
+func (nt NotifyType) Valid() bool {
+	if nt == NotifyTest || nt == NotifyEvent || nt == NotifyError {
+		return true
+	}
+	return false
+}
+
 type Notify struct {
 	Title string `json:"title"`
-	Content string `json:"content"`
+	Content string `type:varchar(1024)" json:"content"`
 	ExtraData string `gorm:"type:varchar(1024)" json:"extra_data"`
 	System string `json:"system"`
 	StackInfo string `gorm:"type:varchar(1024)" json:"stack_info"`

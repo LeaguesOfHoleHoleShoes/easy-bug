@@ -14,6 +14,7 @@ require (
 	github.com/pkg/errors v0.8.1
 	github.com/smallnest/rpcx v0.0.0-20190411025646-0e71741fb23f
 	github.com/stretchr/testify v1.3.0
+	github.com/urfave/cli v1.20.0
 	go.uber.org/zap v1.9.1
 	gopkg.in/go-playground/assert.v1 v1.2.1 // indirect
 	gopkg.in/go-playground/validator.v8 v8.18.2 // indirect

@@ -20,9 +20,11 @@ func NewServer(h *common.Handler) *gin.Engine {
 	// 新增 pipeline （pipeline中包含了其对应的规则）
 	rgV1.POST("login", Login(h))
 	rgV1.POST("project", CreateProject(h))
+
 	rgV1.POST("notify", CreateNotify(h))
 	rgV1.GET("notifies", GetNotifies(h))
 	rgV1.GET("notifies/latest", LatestNotifies(h))
+	rgV1.GET("projects", GetProjects(h))
 
 	return e
 }

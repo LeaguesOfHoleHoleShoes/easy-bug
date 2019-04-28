@@ -27,6 +27,9 @@ type NotifyManager struct {
 
 // todo 做短时间次数限制
 func (m *NotifyManager) Create(proToken string, n model.Notify) error {
+	if !n.NType.Valid() {
+		return g_error.ErrInvalidNotifyType
+	}
 	p := m.proManager.GetProByToken(proToken)
 
 	switch {

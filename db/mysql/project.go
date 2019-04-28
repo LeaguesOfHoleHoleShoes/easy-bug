@@ -1,6 +1,7 @@
 package mysql
 
 import (
+	"github.com/LeaguesOfHoleHoleShoes/easy-bug/common/util"
 	"github.com/LeaguesOfHoleHoleShoes/easy-bug/model"
 	"github.com/dipperin/go-ms-toolkit/log"
 	"github.com/jinzhu/gorm"
@@ -14,6 +15,12 @@ func NewProjectDB(db *gorm.DB) *ProjectDB {
 
 type ProjectDB struct {
 	db *gorm.DB
+}
+
+func (db *ProjectDB) GetProjects(uID string, page int, perPage int) (result []model.Project, totalPages int, totalCount int) {
+	fDB := db.db.Where("user_id=?", uID)
+	totalPages, totalCount = util.GetDataByPageAndPerPage(fDB, page, perPage, model.Project{}, &result)
+	return
 }
 
 func (db *ProjectDB) GetProByToken(token string) (result model.Project) {

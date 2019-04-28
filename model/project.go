@@ -12,7 +12,7 @@ type Project struct {
 	// 标志是否可以创建 notify
 	Locked bool `json:"locked"`
 
-	UserID string `json:"user_id"`
+	UserID string `gorm:"index" json:"user_id"`
 
 	CreatedAt time.Time `json:"created_at"`
 }

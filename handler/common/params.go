@@ -89,3 +89,16 @@ type GetNotifiesResp struct {
 	TotalPages int `json:"total_pages"`
 	TotalCount int `json:"total_count"`
 }
+
+type GetProjectsReq struct {
+	UserToken string `json:"user_token"`
+	Page int `json:"page"`
+	PerPage int `json:"per_page"`
+}
+
+type GetProjectsResp struct {
+	BaseResp
+	Projects []model.Project `json:"projects"`
+	TotalPages int `json:"total_pages"`
+	TotalCount int `json:"total_count"`
+}

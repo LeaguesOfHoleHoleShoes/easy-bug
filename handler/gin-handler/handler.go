@@ -90,6 +90,19 @@ func GetNotifies(h *common.Handler) gin.HandlerFunc {
 	}
 }
 
+func GetProjects(h *common.Handler) gin.HandlerFunc {
+	return func(context *gin.Context) {
+		var req common.GetProjectsReq
+		if err := context.BindJSON(&req); err != nil {
+			errResp(context, err.Error())
+			return
+		}
+		var resp common.GetProjectsResp
+		_ = h.GetProjects(context, &req, &resp)
+		doResp(context, resp.BaseResp, resp)
+	}
+}
+
 func errResp(context *gin.Context, err string) {
 	context.JSON(400, common.BaseResp{
 		Success: false,

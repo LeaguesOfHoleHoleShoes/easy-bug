@@ -89,6 +89,17 @@ func (h *Handler) GetNotifies(c context.Context, req *GetNotifiesReq, resp *GetN
 	return
 }
 
+func (h *Handler) GetProjects(c context.Context, req *GetProjectsReq, resp *GetProjectsResp) (err error) {
+	user, err := h.uManager.ValidUserToken(req.UserToken)
+	if err != nil {
+		errResp(&resp.BaseResp, err.Error())
+		return err
+	}
+
+	resp.Projects, resp.TotalPages, resp.TotalCount, err = h.pManager.GetProjects(user.ID, req.Page, req.PerPage)
+	return
+}
+
 func errResp(br *BaseResp, err string) {
 	br.Success = false
 	br.Info = err

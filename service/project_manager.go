@@ -9,6 +9,7 @@ import (
 type ProjectDB interface {
 	GetProByToken(token string) model.Project
 	Create(p model.Project) error
+	GetProjects(uID string, page int, perPage int) (result []model.Project, totalPages int, totalCount int)
 }
 
 func NewProjectManager(db ProjectDB) *ProjectManager {
@@ -40,9 +41,9 @@ func (m *ProjectManager) Create(p model.Project) (result model.Project, err erro
 	return p, m.db.Create(p)
 }
 
-// todo
-func (m *ProjectManager) GetProjects() {
-	panic("implement me")
+func (m *ProjectManager) GetProjects(uID string, page int, perPage int) (result []model.Project, totalPages int, totalCount int, err error) {
+	result, totalPages, totalCount = m.db.GetProjects(uID, page, perPage)
+	return
 }
 
 // 外边要检查用户的 token ?
