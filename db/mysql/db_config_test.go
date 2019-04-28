@@ -9,6 +9,7 @@ import (
 )
 
 func TestGetDBConfig(t *testing.T) {
+	assert.NoError(t, os.Setenv("db_env", "dev"))
 	conf := GetDBConfig()
 	assert.Equal(t, "easy_bug_dev", conf.DbName)
 	assert.NoError(t, os.Setenv("db_env", "prod"))
