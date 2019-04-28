@@ -12,6 +12,10 @@ import (
 	"runtime"
 )
 
+func NewEasyBugGinClient(serverUrl string, proToken string) *EasyBugGinClient {
+	return &EasyBugGinClient{serverUrl: serverUrl, proToken: proToken}
+}
+
 type EasyBugGinClient struct {
 	serverUrl string
 	proToken string
@@ -34,7 +38,7 @@ func (c *EasyBugGinClient) NotifyError(title string, content string, extraData i
 }
 
 func (c *EasyBugGinClient) notify(title string, content string, extraData interface{}, nt model.NotifyType) {
-	resp, err := http.Post("", "application/json", bytes.NewReader(util.StringifyJsonToBytes(common.CreateNotifyReq{
+	resp, err := http.Post(c.serverUrl + "/v1/notify", "application/json", bytes.NewReader(util.StringifyJsonToBytes(common.CreateNotifyReq{
 		ProToken: c.proToken,
 		Title: title,
 		Content: content,
