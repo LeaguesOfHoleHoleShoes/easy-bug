@@ -21,6 +21,8 @@ func NewServer(h *common.Handler) *gin.Engine {
 	rgV1.POST("login", Login(h))
 	rgV1.POST("project", CreateProject(h))
 	rgV1.POST("notify", CreateNotify(h))
+	rgV1.GET("notifies", GetNotifies(h))
+	rgV1.GET("notifies/latest", LatestNotifies(h))
 
 	return e
 }

@@ -66,3 +66,26 @@ func (r CreateNotifyReq) GetNotify() model.Notify {
 		Region: r.Region,
 	}
 }
+
+type LatestNotifiesReq struct {
+	ProToken string `json:"pro_token"`
+	Count int `json:"count"`
+}
+
+type LatestNotifiesResp struct {
+	BaseResp
+	Notifies []model.Notify `json:"notifies"`
+}
+
+type GetNotifiesReq struct {
+	ProToken string `json:"pro_token"`
+	Page int `json:"page"`
+	PerPage int `json:"per_page"`
+}
+
+type GetNotifiesResp struct {
+	BaseResp
+	Notifies []model.Notify `json:"notifies"`
+	TotalPages int `json:"total_pages"`
+	TotalCount int `json:"total_count"`
+}

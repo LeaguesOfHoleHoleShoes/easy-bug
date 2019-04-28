@@ -83,3 +83,10 @@ func GetDataByPageAndPerPage(db *gorm.DB, page int, perPage int, m interface{}, 
 	totalPages = (totalCount + perPage -1)/perPage
 	return
 }
+
+func GetEnv(k, defaultV string) (result string) {
+	if result = os.Getenv(k); result == "" {
+		result = defaultV
+	}
+	return
+}

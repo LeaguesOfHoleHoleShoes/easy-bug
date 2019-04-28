@@ -18,6 +18,10 @@ type UserDB interface {
 	Create(u model.User) error
 }
 
+func NewUserManager(db UserDB) *UserManager {
+	return &UserManager{db: db}
+}
+
 // UserManager 管理用户
 type UserManager struct {
 	db UserDB

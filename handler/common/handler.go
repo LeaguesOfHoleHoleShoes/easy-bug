@@ -68,6 +68,27 @@ func (h *Handler) CreateNotify(c context.Context, req *CreateNotifyReq, resp *ui
 	return h.nManager.Create(req.ProToken, req.GetNotify())
 }
 
+func (h *Handler) LatestNotifies(c context.Context, req *LatestNotifiesReq, resp *LatestNotifiesResp) error {
+	ns, err := h.nManager.LatestNotifies(req.ProToken, req.Count)
+	if err != nil {
+		errResp(&resp.BaseResp, err.Error())
+		return err
+	}
+	resp.Notifies = ns
+	resp.Success = true
+	return nil
+}
+
+func (h *Handler) GetNotifies(c context.Context, req *GetNotifiesReq, resp *GetNotifiesResp) (err error) {
+	resp.Notifies, resp.TotalPages, resp.TotalCount, err = h.nManager.Notifies(req.ProToken, req.Page, req.PerPage)
+	if err != nil {
+		errResp(&resp.BaseResp, err.Error())
+		return
+	}
+	resp.Success = true
+	return
+}
+
 func errResp(br *BaseResp, err string) {
 	br.Success = false
 	br.Info = err
