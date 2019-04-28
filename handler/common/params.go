@@ -13,6 +13,9 @@ type CreateUserReq struct {
 
 	Name  string `json:"name"`
 	Phone string `json:"phone"`
+
+	// 创建用户的暗号，如果服务端没配置则可以任意创建用户
+	CreateUserToken string `json:"create_user_token"`
 }
 
 type LoginReq struct {

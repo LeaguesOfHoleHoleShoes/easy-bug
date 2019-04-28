@@ -2,18 +2,30 @@ package common
 
 import (
 	"context"
+	"github.com/LeaguesOfHoleHoleShoes/easy-bug/common/g-error"
 	"github.com/LeaguesOfHoleHoleShoes/easy-bug/model"
+	"os"
 )
 
 func NewHandler(env Env) *Handler {
-	return &Handler{Env: env}
+	return &Handler{
+		Env: env,
+		createUserToken: os.Getenv("create_user_token"),
+	}
 }
 
 type Handler struct {
 	Env
+
+	createUserToken string
 }
 
 func (h *Handler) CreateUser(c context.Context, req *CreateUserReq, resp *uint) error {
+	if h.createUserToken != "" {
+		if req.CreateUserToken != h.createUserToken {
+			return g_error.ErrCreateUserTokenNotMatch
+		}
+	}
 	return h.uManager.Create(model.User{
 		Username: req.Username,
 		Password: req.Password,

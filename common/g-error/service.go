@@ -7,6 +7,7 @@ var (
 	ErrProjectLocked = errors.New("project locked")
 	ErrCountMoreThanMax = errors.New("count more than max")
 	ErrInvalidNotifyType = errors.New("invalid notify type")
+	ErrCreateUserTokenNotMatch = errors.New("create user token not match")
 )
 
 var (

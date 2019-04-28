@@ -21,6 +21,8 @@ run_env: dev test preprod prod
 gin_port: 默认3001
 rpcx_port: 默认3000
 
+create_user_token: 创建用户的暗号
+
 */
 func main() {
 	db := mysql.MakeDB(mysql2.GetDBConfig())
