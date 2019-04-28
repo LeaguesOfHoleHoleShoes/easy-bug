@@ -19,6 +19,7 @@ var (
 	ErrShouldLoginFirst = errors.New("should login first")
 )
 
+// pro token 从环境变量中读，每个环境是不同的
 func NewEasyBugRpcxClient(serverUrl string, proToken string) (*EasyBugRpcxClient, error) {
 	if proToken == "" {
 		return nil, ErrProTokenIsEmpty
