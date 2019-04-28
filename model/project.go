@@ -1,6 +1,9 @@
 package model
 
-import "github.com/LeaguesOfHoleHoleShoes/easy-bug/common/g-error"
+import (
+	"github.com/LeaguesOfHoleHoleShoes/easy-bug/common/g-error"
+	"time"
+)
 
 type Project struct {
 	ID string `gorm:"unique_index" json:"id"`
@@ -10,6 +13,8 @@ type Project struct {
 	Locked bool `json:"locked"`
 
 	UserID string `json:"user_id"`
+
+	CreatedAt time.Time `json:"created_at"`
 }
 
 func (p Project) ValidCreate() error {

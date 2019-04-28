@@ -2,8 +2,10 @@ package mysql
 
 import (
 	"github.com/LeaguesOfHoleHoleShoes/easy-bug/common/g-env"
+	"github.com/LeaguesOfHoleHoleShoes/easy-bug/model"
 	"github.com/dipperin/go-ms-toolkit/db-config"
 	_ "github.com/go-sql-driver/mysql"
+	"github.com/jinzhu/gorm"
 )
 
 func GetDBConfig() *db_config.DbConfig {
@@ -20,4 +22,8 @@ func GetDBConfig() *db_config.DbConfig {
 
 	conf.DbName = dbName
 	return conf
+}
+
+func Migrate(db *gorm.DB) {
+	db.AutoMigrate(model.Notify{}, model.User{}, model.Project{})
 }

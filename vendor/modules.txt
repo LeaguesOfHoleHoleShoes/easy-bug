@@ -19,6 +19,7 @@ github.com/dgrijalva/jwt-go
 github.com/dipperin/go-ms-toolkit/log
 github.com/dipperin/go-ms-toolkit/db-config
 github.com/dipperin/go-ms-toolkit/env
+github.com/dipperin/go-ms-toolkit/orm/gorm/mysql
 # github.com/fatih/color v1.7.0
 github.com/fatih/color
 # github.com/gin-contrib/sse v0.0.0-20190301062529-5545eab6dad3
@@ -39,6 +40,10 @@ github.com/hashicorp/golang-lru
 github.com/hashicorp/golang-lru/simplelru
 # github.com/huandu/xstrings v1.2.0
 github.com/huandu/xstrings
+# github.com/jinzhu/gorm v1.9.2
+github.com/jinzhu/gorm
+# github.com/jinzhu/inflection v0.0.0-20180308033659-04140366298a
+github.com/jinzhu/inflection
 # github.com/json-iterator/go v1.1.6
 github.com/json-iterator/go
 # github.com/julienschmidt/httprouter v1.2.0

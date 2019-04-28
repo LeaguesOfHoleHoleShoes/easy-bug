@@ -6,18 +6,24 @@ import (
 	"github.com/dipperin/go-ms-toolkit/log"
 	"github.com/jinzhu/gorm"
 	"go.uber.org/zap"
+	"time"
 )
+
+func NewNotifyDB(db *gorm.DB) *NotifyDB {
+	return &NotifyDB{db: db}
+}
 
 type NotifyDB struct {
 	db *gorm.DB
 }
 
 func (db *NotifyDB) Create(notify model.Notify) error {
+	notify.CreatedAt = time.Now()
 	return db.db.Model(model.Notify{}).Create(notify).Error
 }
 
 func (db *NotifyDB) LatestNotifies(proID string, count int) (result []model.Notify) {
-	if err := db.db.Model(model.Notify{}).Order("created_at desc").Limit(count).Find(&result).Error; err != nil {
+	if err := db.db.Model(model.Notify{}).Order("created_at desc").Limit(count).Find(&result, "project_id=?", proID).Error; err != nil {
 		log.QyLogger.Warn("find latest notifies failed", zap.Error(err))
 	}
 	return

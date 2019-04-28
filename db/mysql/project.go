@@ -5,7 +5,12 @@ import (
 	"github.com/dipperin/go-ms-toolkit/log"
 	"github.com/jinzhu/gorm"
 	"go.uber.org/zap"
+	"time"
 )
+
+func NewProjectDB(db *gorm.DB) *ProjectDB {
+	return &ProjectDB{db: db}
+}
 
 type ProjectDB struct {
 	db *gorm.DB
@@ -21,6 +26,7 @@ func (db *ProjectDB) GetProByToken(token string) (result model.Project) {
 }
 
 func (db *ProjectDB) Create(p model.Project) error {
+	p.CreatedAt = time.Now()
 	return db.db.Model(model.Project{}).Create(p).Error
 }
 

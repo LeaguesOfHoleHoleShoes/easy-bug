@@ -9,6 +9,7 @@ require (
 	github.com/gin-gonic/gin v1.3.0
 	github.com/go-sql-driver/mysql v1.4.1
 	github.com/hashicorp/golang-lru v0.5.1
+	github.com/jinzhu/gorm v1.9.2
 	github.com/json-iterator/go v1.1.6
 	github.com/pkg/errors v0.8.1
 	github.com/smallnest/rpcx v0.0.0-20190411025646-0e71741fb23f

@@ -5,7 +5,12 @@ import (
 	"github.com/dipperin/go-ms-toolkit/log"
 	"github.com/jinzhu/gorm"
 	"go.uber.org/zap"
+	"time"
 )
+
+func NewUserDB(db *gorm.DB) *UserDB {
+	return &UserDB{db: db}
+}
 
 type UserDB struct {
 	db *gorm.DB
@@ -30,5 +35,6 @@ func (db *UserDB) GetUserByUsername(username string) (result model.User) {
 }
 
 func (db *UserDB) Create(u model.User) error {
+	u.CreatedAt = time.Now()
 	return db.db.Model(model.User{}).Create(u).Error
 }

@@ -4,6 +4,7 @@ import (
 	"crypto/sha256"
 	"encoding/hex"
 	"github.com/LeaguesOfHoleHoleShoes/easy-bug/common/g-error"
+	"time"
 )
 
 // User 用户
@@ -17,6 +18,8 @@ type User struct {
 
 	Name  string `json:"name"`
 	Phone string `json:"phone"`
+
+	CreatedAt time.Time `json:"created_at"`
 }
 
 func (u User) ValidCreate() error {
