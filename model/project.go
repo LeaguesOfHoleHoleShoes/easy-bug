@@ -5,7 +5,7 @@ import "github.com/LeaguesOfHoleHoleShoes/easy-bug/common/g-error"
 type Project struct {
 	ID string `gorm:"unique_index" json:"id"`
 	Name string `json:"name"`
-	Token string `json:"token"`
+	Token string `gorm:"unique_index" json:"token"`
 	// 标志是否可以创建 notify
 	Locked bool `json:"locked"`
 

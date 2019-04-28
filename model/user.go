@@ -12,7 +12,7 @@ type User struct {
 	Username string `gorm:"unique_index" json:"username"`
 	Password string `gorm:"-" json:"-"`
 	EncryptedPassword string `json:"-"`
-	// 保留字段，暂不支持 jwt token 单点登录
+	// 保留字段，暂不支持 jwt token 单点登录。外边不要根据 token 来查询，应该把 token 恢复成 username 后来查
 	Token string `json:"token"`
 
 	Name  string `json:"name"`

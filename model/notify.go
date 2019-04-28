@@ -22,7 +22,7 @@ type Notify struct {
 	FromUrl string `json:"from_url"`
 	FromIP string `json:"from_ip"`
 	Region string `json:"region"`
-	CreatedAt time.Time `json:"created_at"`
+	CreatedAt time.Time `gorm:"index" json:"created_at"`
 
 	ProjectID string `json:"project_id"`
 }
